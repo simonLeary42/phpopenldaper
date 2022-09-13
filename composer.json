@@ -1,0 +1,23 @@
+{
+    "name": "hakasapl/phpopenldaper",
+    "type": "library",
+    "description": "Wrapper for php-ldap",
+    "keywords": ["ldap"],
+    "homepage": "https://github.com/hakasapl/phpopenldaper",
+    "license": "GPL3",
+    "authors": [
+        {
+            "name": "Hakan Saplakoglu",
+            "email": "hakansaplakog@gmail.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": ">=7.0.0"
+    },
+    "autoload": {
+        "psr-0": {
+            "PHPOpenLdaper": "src"
+        }
+    }
+}
