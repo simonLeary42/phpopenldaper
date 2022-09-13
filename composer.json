@@ -8,8 +8,7 @@
     "authors": [
         {
             "name": "Hakan Saplakoglu",
-            "email": "hakansaplakog@gmail.com",
-            "role": "Developer"
+            "email": "hakansaplakog@gmail.com"
         }
     ],
     "require": {
