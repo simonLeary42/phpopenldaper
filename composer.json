@@ -4,7 +4,7 @@
     "description": "Wrapper for php-ldap",
     "keywords": ["ldap"],
     "homepage": "https://github.com/hakasapl/phpopenldaper",
-    "license": "GPL3",
+    "license": "GPL-3.0-only",
     "authors": [
         {
             "name": "Hakan Saplakoglu",
@@ -16,7 +16,7 @@
     },
     "autoload": {
         "psr-0": {
-            "PHPOpenLdaper": "src"
+            "PHPOpenLDAPer": "src"
         }
     }
 }
