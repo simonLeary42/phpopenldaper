@@ -11,7 +11,7 @@ namespace PHPOpenLDAPer;
  * @version 1.0.0
  * @since 7.2.0
  */
-class ldapConn {
+class LDAPConn {
   protected $conn;  // LDAP link
 
   /**

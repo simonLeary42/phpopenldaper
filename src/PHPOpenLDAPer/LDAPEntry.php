@@ -12,7 +12,7 @@ namespace PHPOpenLDAPer;
  * @version 1.0.0
  * @since 7.2.0
  */
-class ldapEntry {
+class LDAPEntry {
   private $conn;  // LDAP connection link
   private $dn;  // Distinguished Name of the Entry
 
