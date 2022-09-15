@@ -1,6 +1,6 @@
 <?php
 
-namespace hakasapl\PHPOpenLDAPer;
+namespace PHPOpenLDAPer;
 
 /**
  * Class that represents one entry in an LDAP server

@@ -1,6 +1,6 @@
 <?php
 
-namespace hakasapl\PHPOpenLDAPer;
+namespace PHPOpenLDAPer;
 
 /**
  * Class that represents a connection to an LDAP server
@@ -80,7 +80,7 @@ class ldapConn {
   public static function stripCount(&$arr) {
     if(is_array($arr)) {
       unset($arr['count']);
-      array_walk($arr, "ldapConn::stripCount");
+      array_walk($arr, "self::stripCount");
     }
   }
 }
