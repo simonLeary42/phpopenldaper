@@ -60,7 +60,7 @@ class LDAPConn
 
         $output = array();
         for ($i = 0; isset($search_entries) && $i < count($search_entries); $i++) {
-            array_push($output, new ldapEntry($this->conn, $search_entries[$i]["dn"]));
+            array_push($output, new LDAPEntry($this->conn, $search_entries[$i]["dn"]));
         }
 
         return $output;
@@ -74,7 +74,7 @@ class LDAPConn
    */
     public function getEntry($dn)
     {
-        return new ldapEntry($this->conn, $dn);
+        return new LDAPEntry($this->conn, $dn);
     }
 
   /**

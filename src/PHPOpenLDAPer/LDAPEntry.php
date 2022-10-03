@@ -39,7 +39,7 @@ class LDAPEntry
     private function pullObject()
     {
         $search = @ldap_get_entries($this->conn, ldap_read($this->conn, $this->dn, "(objectclass=*)"));
-        ldapConn::stripCount($search);
+        LDAPConn::stripCount($search);
 
         if (isset($search)) {
           // Object Exists
@@ -138,7 +138,7 @@ class LDAPEntry
         $newParent = substr($destination, strpos($destination, ',') + 1);
         if (ldap_rename($this->conn, $this->dn, $newRDN, $newParent, true)) {
             $this->pullObject();  // Refresh the existing entry
-            return new ldapEntry($this->conn, $destination);
+            return new LDAPEntry($this->conn, $destination);
         } else {
             return false;
         }
@@ -151,7 +151,7 @@ class LDAPEntry
    */
     public function getParent()
     {
-        return new ldapEntry($this->conn, substr($this->dn, strpos($this->dn, ',') + 1)); //TODO edge case for parent being non-existent (part of base dn)
+        return new LDAPEntry($this->conn, substr($this->dn, strpos($this->dn, ',') + 1)); //TODO edge case for parent being non-existent (part of base dn)
     }
 
   /**
@@ -170,7 +170,7 @@ class LDAPEntry
         }
 
         $search_entries = @ldap_get_entries($this->conn, $search);
-        ldapConn::stripCount($search_entries);
+        LDAPConn::stripCount($search_entries);
 
         if (count($search_entries) > 0 && $search_entries[0]["dn"] == $this->getDN()) {
             array_shift($search_entries);
@@ -192,7 +192,7 @@ class LDAPEntry
 
         $output = array();
         foreach ($children_array as $child) {
-            array_push($output, new ldapEntry($this->conn, $child["dn"]));
+            array_push($output, new LDAPEntry($this->conn, $child["dn"]));
         }
 
         return $output;
@@ -206,7 +206,7 @@ class LDAPEntry
    */
     public function getChild($rdn)
     {
-        return new ldapEntry($this->conn, $rdn . "," . $this->dn);
+        return new LDAPEntry($this->conn, $rdn . "," . $this->dn);
     }
 
   /**
