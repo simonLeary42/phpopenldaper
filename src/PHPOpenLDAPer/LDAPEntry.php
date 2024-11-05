@@ -38,7 +38,11 @@ class LDAPEntry
    */
     private function pullObject()
     {
-        $search = @ldap_get_entries($this->conn, ldap_read($this->conn, $this->dn, "(objectclass=*)"));
+        $result = ldap_read($this->conn, $this->dn, "(objectclass=*)");
+        if ($result === false) {
+            return false;
+        }
+        $search = @ldap_get_entries($this->conn, $result);
         LDAPConn::stripCount($search);
 
         if (isset($search)) {
