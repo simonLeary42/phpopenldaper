@@ -83,7 +83,7 @@ class LDAPEntry
    */
     public function exists()
     {
-        return !is_null($this->object);
+        return @!is_null($this->object);
     }
 
   /**
