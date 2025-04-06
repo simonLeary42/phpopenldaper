@@ -5,6 +5,7 @@ namespace PHPOpenLDAPer;
 /**
  * Class that represents one entry in an LDAP server
  * This class is not meant to be constructed outside the ldapConn class
+ * Don't forget to sanitize your DN!
  *
  * Originally written for UMASS Amherst Research Computing
  *
@@ -168,9 +169,9 @@ class LDAPEntry
     public function getChildrenArray($recursive = false, $filter = "(objectclass=*)")
     {
         if ($recursive) {
-            $search = ldap_search($this->conn, $this->dn, $filter);
+            $search = ldap_search($this->conn, $this->dn, ldap_escape($filter, LDAP_ESCAPE_FILTER));
         } else {
-            $search = ldap_list($this->conn, $this->dn, $filter);
+            $search = ldap_list($this->conn, $this->dn, ldap_escape($filter, LDAP_ESCAPE_FILTER));
         }
 
         $search_entries = @ldap_get_entries($this->conn, $search);
@@ -192,7 +193,7 @@ class LDAPEntry
    */
     public function getChildren($recursive = false, $filter = "(objectclass=*)")
     {
-        $children_array = $this->getChildrenArray($recursive, $filter);
+        $children_array = $this->getChildrenArray($recursive, ldap_escape($filter, LDAP_ESCAPE_FILTER));
 
         $output = array();
         foreach ($children_array as $child) {
