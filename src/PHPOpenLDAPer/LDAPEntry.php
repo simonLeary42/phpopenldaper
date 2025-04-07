@@ -38,7 +38,7 @@ class LDAPEntry
    */
     private function pullObject()
     {
-        $result = ldap_read($this->conn, $this->dn, "(objectclass=*)");
+        $result = @ldap_read($this->conn, $this->dn, "(objectclass=*)");
         if ($result === false) {
             return false;
         }
@@ -162,15 +162,14 @@ class LDAPEntry
    * Gets an array of children of the entry
    *
    * @param boolean $recursive (optional) If true, recursive search. Default is false.
-   * @param string $filter (optional) Filter matching LDAP search filter syntax
    * @return array Array of children entries
    */
-    public function getChildrenArray($recursive = false, $filter = "(objectclass=*)")
+    public function getChildrenArray($recursive = false)
     {
         if ($recursive) {
-            $search = ldap_search($this->conn, $this->dn, $filter);
+            $search = ldap_search($this->conn, $this->dn, "(objectclass=*)");
         } else {
-            $search = ldap_list($this->conn, $this->dn, $filter);
+            $search = ldap_list($this->conn, $this->dn, "(objectclass=*)");
         }
 
         $search_entries = @ldap_get_entries($this->conn, $search);
@@ -187,12 +186,11 @@ class LDAPEntry
    * Gets an array of the children of the entry saved as ldapEntry class
    *
    * @param bool $recursive (optional) If true, recursive search. Default is false.
-   * @param string $filter (optional) Filter matching LDAP search filter syntax
    * @return array Array of children ldapEntry objects
    */
-    public function getChildren($recursive = false, $filter = "(objectclass=*)")
+    public function getChildren($recursive = false)
     {
-        $children_array = $this->getChildrenArray($recursive, $filter);
+        $children_array = $this->getChildrenArray($recursive, "(objectclass=*)");
 
         $output = array();
         foreach ($children_array as $child) {
