@@ -86,7 +86,7 @@ class LDAPConn
     {
         if (is_array($arr)) {
             unset($arr['count']);
-            array_walk($arr, "self::stripCount");
+            array_walk($arr, [self::class, "stripCount"]);
         }
     }
 }
