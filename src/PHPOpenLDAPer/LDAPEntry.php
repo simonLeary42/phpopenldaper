@@ -38,7 +38,7 @@ class LDAPEntry
    */
     private function pullObject()
     {
-        $result = ldap_read($this->conn, $this->dn, "(objectclass=*)");
+        $result = @ldap_read($this->conn, $this->dn, "(objectclass=*)");
         if ($result === false) {
             return false;
         }
