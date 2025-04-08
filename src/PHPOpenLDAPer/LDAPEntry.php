@@ -334,7 +334,7 @@ class LDAPEntry
         if (isset($this->object[$attr])) {
             return $this->object[$attr];
         } else {
-            return null;
+            return [];
         }
     }
 
